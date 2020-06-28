@@ -1,3 +1,10 @@
+# Rust WASM logistic amp
+The illustration above shows a bifurcation diagram of the logistic map obtained by plotting as a function of r a series of values for x_n obtained by starting with a random value x_0, iterating many times, and discarding the first points corresponding to values before the iterates converge to the attractor. 
+In other words, the set of fixed points of x_n corresponding to a given value of r are plotted for values of r increasing to the right.
+
+Ruts + wasm
+
+
 ## How to install
 
 ```sh
