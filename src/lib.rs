@@ -1,10 +1,6 @@
 use wasm_bindgen::prelude::*;
 use web_sys::{console};
 use js_sys::Array;
-use js_sys::Set;
-use wasm_bindgen::__rt::std::collections::HashSet;
-use std::collections::BTreeSet;
-use std::cmp::Ordering;
 
 
 
@@ -30,10 +26,10 @@ pub fn run(steps:i32) -> Result<Array, JsValue> {
     let MAX = (4*steps) as i32;
     for n in 1..MAX
     {
-        let r = n as f64 * 1.0/steps as f64;
+        let r = n as f32 * 1.0/steps as f32;
         let values : Array = Array::new();
         for j in 1..256 {
-            values.push(&wasm_bindgen::JsValue::from_f64(logistic(r, (j as f64)/256.0)));
+            values.push(&wasm_bindgen::JsValue::from_f64(logistic(r, (j as f32)/256.0)as f64) );
 
         }
         js_array.push(&wasm_bindgen::JsValue::from(values));
@@ -42,11 +38,11 @@ pub fn run(steps:i32) -> Result<Array, JsValue> {
 }
 
 
-pub fn logistic(r:f64, x0: f64) -> f64 {
-    let  mut x:f64= x0;
-    for n in 1..100 {
+pub fn logistic(r:f32, x0: f32) -> f32 {
+    let  mut x:f32= x0;
+    for n in 1..256 {
         x = r*x*(1. - x);
     }
-    x
+    (((x*1000.0) as i32) as f32/1000.0) as f32
 }
 
